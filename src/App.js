@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import $ from "jquery";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 import "./App.css";
 
 class App extends Component {
@@ -24,7 +26,21 @@ class App extends Component {
     return this.state.skillArray.map((value) => {
       return (
         <div className="application-tag-container">
-          <div className="application-tags">{value}</div>
+          <div className="application-tags">
+            {value}
+
+            <span
+              style={{ marginLeft: 4, cursor: "pointer" }}
+              id={`btn_${value}`}
+              onClick={(e) => {
+                let element = document.getElementById(e.target.id);
+
+                element.parentElement.style.display = "none";
+              }}
+            >
+              &times;
+            </span>
+          </div>
         </div>
       );
     });
@@ -59,7 +75,16 @@ class App extends Component {
             </div>
             <div className="col-md-6 col-sm-12 application-input-container">
               <label className="application-label">Mobile Number</label>
-              <input className="application-input" />
+              <PhoneInput
+                defaultCountry={"in"}
+                inputStyle={{
+                  height: "30px",
+                  width: "100%",
+                  border: "1px solid #ddd",
+                }}
+                containerStyle={{ width: "100%" }}
+                country={"in"}
+              />
             </div>
           </div>
           <div className="row">
@@ -71,7 +96,16 @@ class App extends Component {
               <label className="application-label">
                 Alternate Mobile Number
               </label>
-              <input className="application-input" />
+              <PhoneInput
+                defaultCountry={"in"}
+                inputStyle={{
+                  height: "30px",
+                  width: "100%",
+                  border: "1px solid #ddd",
+                }}
+                containerStyle={{ width: "100%" }}
+                country={"in"}
+              />
             </div>
           </div>
         </div>
